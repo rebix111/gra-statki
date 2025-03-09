@@ -26,13 +26,13 @@ max_naboje = 3
 zulty_udezony = pygame.USEREVENT + 1
 czerwony_udezony = pygame.USEREVENT + 2
 
-dziwienk_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Grenade+1.mp3')
-ogien_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Gun+Silencer.mp3')
-sound_track = pygame.mixer.Sound('projekt_gry\\dziwięki\\pixel-perfect-112527.mp3')
+#dziwienk_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Grenade+1.mp3')
+#ogien_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Gun+Silencer.mp3')
+#sound_track = pygame.mixer.Sound('projekt_gry\\dziwięki\\pixel-perfect-112527.mp3')
 
-dziwienk_pocisku.set_volume(0.1)
-ogien_pocisku.set_volume(0.1)
-sound_track.set_volume(0.1)
+#dziwienk_pocisku.set_volume(0.1)
+#ogien_pocisku.set_volume(0.1)
+#sound_track.set_volume(0.1)
 
 zdrowie_zultego = 10
 zdrowie_czerwonego = 10
@@ -148,7 +148,7 @@ def main():
     dziala = True
     czas = pygame.time.Clock()
 
-    sound_track.play(-1)
+    #sound_track.play(-1)
 
     while dziala:
         czas.tick(60)
@@ -161,18 +161,18 @@ def main():
                 if event.key == pygame.K_LCTRL and len(zuty_pociski) < max_naboje:
                     pocisk = pygame.Rect(zuty.x + zuty.width, zuty.y + zuty.height / 2 - 2, 10, 5)
                     zuty_pociski.append(pocisk)
-                    dziwienk_pocisku.play()
+                    #dziwienk_pocisku.play()
                 if event.key == pygame.K_RCTRL and len(czerwony_pociski) < max_naboje:
                     pocisk = pygame.Rect(czerwony.x, czerwony.y + czerwony.height / 2 - 2, 10, 5)
                     czerwony_pociski.append(pocisk)
-                    dziwienk_pocisku.play()
+                    #dziwienk_pocisku.play()
 
             if event.type == czerwony_udezony:
                 zdrowie_czerwonego -= 1
-                ogien_pocisku.play()
+               #ogien_pocisku.play()
             if event.type == zulty_udezony:
                 zdrowie_zultego -= 1
-                ogien_pocisku.play()
+                #ogien_pocisku.play()
 
         tekst_wygranej = ""
         if zdrowie_czerwonego == 0:
