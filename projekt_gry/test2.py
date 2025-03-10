@@ -15,7 +15,7 @@ rekord_rund_czerwonego = 0
 kolor_bialy = (255, 255, 255)
 kolor_czorny = (0, 0, 0)
 kolor_czerwont = (255, 0, 0)
-zulty_kolor = (255, 255, 0)
+zuty_kolor = (255, 255, 0)
 
 przesuniencie = 5
 wysokosc_statku, szerokosc_statku = 55, 40
@@ -23,42 +23,47 @@ poruszanie_pociskow = 14
 border = pygame.Rect(szerokosc_okna / 2 - 5, 0, 10, wysokosc_okna)
 narysuj_zdrowie = pygame.font.SysFont('comicsans', 30)
 max_naboje = 3
-zulty_udezony = pygame.USEREVENT + 1
+zuty_udezony = pygame.USEREVENT + 1
 czerwony_udezony = pygame.USEREVENT + 2
-
-#dziwienk_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Grenade+1.mp3')
-#ogien_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Gun+Silencer.mp3')
-#sound_track = pygame.mixer.Sound('projekt_gry\\dziwięki\\pixel-perfect-112527.mp3')
-
-#dziwienk_pocisku.set_volume(0.1)
-#ogien_pocisku.set_volume(0.1)
-#sound_track.set_volume(0.1)
 
 zdrowie_zultego = 10
 zdrowie_czerwonego = 10
 
+base_path = os.path.dirname(__file__)
+
 zuty_statek = pygame.image.load(
-    os.path.join('projekt_gry','tekstury', 'spaceship_yellow.png'))
+    os.path.join(base_path, 'tekstury', 'spaceship_yellow.png'))
 zuty_statek = pygame.transform.rotate(pygame.transform.scale(zuty_statek, (wysokosc_statku, szerokosc_statku)), 90)
 
 czerwony_statek = pygame.image.load(
-    os.path.join('projekt_gry','tekstury', 'spaceship_red.png'))
+    os.path.join(base_path, 'tekstury', 'spaceship_red.png'))
 czerwony_statek = pygame.transform.rotate(pygame.transform.scale(czerwony_statek, (wysokosc_statku, szerokosc_statku)), 270)
 
-tlo = pygame.image.load(
-    os.path.join('projekt_gry','tekstury', 'space.png'))
+dziwienk_pocisku = pygame.mixer.Sound(os.path.join(base_path, 'dziwięki', 'Grenade+1.mp3'))
+ogien_pocisku = pygame.mixer.Sound(os.path.join(base_path,'dziwięki','Gun+Silencer.mp3'))
+sound_track = pygame.mixer.Sound(os.path.join(base_path,'dziwięki','pixel-perfect-112527.mp3'))
 
+dziwienk_pocisku.set_volume(0.1)
+ogien_pocisku.set_volume(0.1)
+sound_track.set_volume(0.1)
+
+tlo = pygame.image.load(
+    os.path.join(base_path, 'tekstury', 'space.png'))
+
+base_path = os.path.dirname(__file__)
+rounds_file_path = os.path.join(base_path, 'projekt_gry', 'rounds.txt')
 def wczytaj_liczbe_rund():
-    if not os.path.exists('projekt_gry/rounds.txt'):
-        with open('projekt_gry/rounds.txt', 'w') as file:
+    if not os.path.exists(rounds_file_path):
+        os.makedirs(os.path.dirname(rounds_file_path), exist_ok=True)
+        with open(rounds_file_path, 'w') as file:
             file.write('0')
         return 0
     else:
         try:
-            with open('projekt_gry/rounds.txt', 'r') as file:
+            with open(rounds_file_path, 'r') as file:
                 rounds = file.read().strip()
-                return int(rounds) 
-        except ValueError:  
+                return int(rounds)
+        except ValueError:
             print("Błąd wczytywania liczby rund, ustawiono 0")
             return 0
 
@@ -82,7 +87,6 @@ def okno_config(czerwony, zuty, zuty_pociski, czerwony_pociski, zdrowie_czerwone
     okno.blit(zdrowie_czerwonego_tekst, (szerokosc_okna - zdrowie_czerwonego_tekst.get_width() - 10, 10))
     okno.blit(zdrowie_zuletego_tekst, (10, 10))
     okno.blit(liczba_rund_tekst, (szerokosc_okna / 2 - liczba_rund_tekst.get_width() / 2, 10))
-
     okno.blit(zuty_statek, (zuty.x, zuty.y))
     okno.blit(czerwony_statek, (czerwony.x, czerwony.y))
 
@@ -90,7 +94,7 @@ def okno_config(czerwony, zuty, zuty_pociski, czerwony_pociski, zdrowie_czerwone
         pygame.draw.rect(okno, kolor_czerwont, pocisku)
 
     for pocisku in zuty_pociski:
-        pygame.draw.rect(okno, zulty_kolor, pocisku)
+        pygame.draw.rect(okno, zuty_kolor, pocisku)
     pygame.display.update()
 
 def kolizja_pocisku(zuty_pociski, czerwony_pociski, zuty, czerwony):
@@ -104,7 +108,7 @@ def kolizja_pocisku(zuty_pociski, czerwony_pociski, zuty, czerwony):
     for pocisk in czerwony_pociski:
         pocisk.x -= poruszanie_pociskow
         if zuty.colliderect(pocisk):
-            pygame.event.post(pygame.event.Event(zulty_udezony))
+            pygame.event.post(pygame.event.Event(zuty_udezony))
             czerwony_pociski.remove(pocisk)
         elif pocisk.x < 0:
             czerwony_pociski.remove(pocisk)
@@ -147,9 +151,7 @@ def main():
 
     dziala = True
     czas = pygame.time.Clock()
-
-    #sound_track.play(-1)
-
+    sound_track.play(-1)
     while dziala:
         czas.tick(60)
 
@@ -161,18 +163,18 @@ def main():
                 if event.key == pygame.K_LCTRL and len(zuty_pociski) < max_naboje:
                     pocisk = pygame.Rect(zuty.x + zuty.width, zuty.y + zuty.height / 2 - 2, 10, 5)
                     zuty_pociski.append(pocisk)
-                    #dziwienk_pocisku.play()
+                    dziwienk_pocisku.play()
                 if event.key == pygame.K_RCTRL and len(czerwony_pociski) < max_naboje:
                     pocisk = pygame.Rect(czerwony.x, czerwony.y + czerwony.height / 2 - 2, 10, 5)
                     czerwony_pociski.append(pocisk)
-                    #dziwienk_pocisku.play()
+                    dziwienk_pocisku.play()
 
             if event.type == czerwony_udezony:
                 zdrowie_czerwonego -= 1
-               #ogien_pocisku.play()
-            if event.type == zulty_udezony:
+                ogien_pocisku.play()
+            if event.type == zuty_udezony:
                 zdrowie_zultego -= 1
-                #ogien_pocisku.play()
+                ogien_pocisku.play()
 
         tekst_wygranej = ""
         if zdrowie_czerwonego == 0:
@@ -189,8 +191,8 @@ def main():
         if tekst_wygranej != "":
             wyswietl_tekst(tekst_wygranej, kolor_bialy, szerokosc_okna / 2 - 150, wysokosc_okna / 2 - 30)
             pygame.display.update()
-            pygame.time.delay(2000)  
-            czerwony, zuty, zuty_pociski, czerwony_pociski = reset_gra()  
+            pygame.time.delay(2000)
+            czerwony, zuty, zuty_pociski, czerwony_pociski = reset_gra()
         kolizja_pocisku(zuty_pociski, czerwony_pociski, zuty, czerwony)
 
         przycisk = pygame.key.get_pressed()
