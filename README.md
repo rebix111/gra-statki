@@ -1,3 +1,10 @@
 BARDZO WAZNE!
 FOLDER 'projekt_gry' TRZEBA PRZEZUCIC NA PULPIT LUB JAKIS INNY FOLDER NIE MOZE BYC ON W PLIKU ZIP
 INACZEJ GRA NIE ZADZIAŁA!!!!!
+
+ogl to trzeba miec pobranego pythona https://www.python.org/downloads/
+jak sie pobierze to 
+pip install pygame
+pip install --upgrade pygame
+(to poradnik dla cb kubus)
+jak nie działa to napiszcie ;p
