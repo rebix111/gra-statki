@@ -7,7 +7,9 @@ kliknij na plik 'gra' => potem prawym przyciskiem => własiciwosci => otwieranie
 
 ogl to trzeba miec pobranego pythona https://www.python.org/downloads/
 jak sie pobierze to:
+
 pip install pygame
+
 pip install --upgrade pygame
 
 jak nie działa to napiszcie ;p
