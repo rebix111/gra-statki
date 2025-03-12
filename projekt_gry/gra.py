@@ -53,7 +53,7 @@ przycisk = pygame.image.load(
     os.path.join('tekstury', 'obraz_2025-03-11_202421195-removebg-preview.png'))
 przycisk = pygame.transform.scale(przycisk, (300,150))
 
-tlo_menu = pygame.image.load(os.path.join('projekt_gry','tekstury','Sprite.jpg'))
+tlo_menu = pygame.image.load(os.path.join('tekstury','Sprite.jpg'))
 tlo_menu = pygame.transform.scale(tlo_menu, (900,500))
 def wczytaj_liczbe_rund():
     if not os.path.exists('projekt_gry/rounds.txt'):
