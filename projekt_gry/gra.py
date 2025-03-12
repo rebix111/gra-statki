@@ -27,9 +27,9 @@ zulty_udezony = pygame.USEREVENT + 1
 czerwony_udezony = pygame.USEREVENT + 2
 
 dziwienk_pocisku = pygame.mixer.Sound('dziwięki\\Grenade+1.mp3')
-ogien_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Gun+Silencer.mp3')
-sound_track = pygame.mixer.Sound('projekt_gry\\dziwięki\\pixel-perfect-112527.mp3')
-przejscie_sound = pygame.mixer.Sound('projekt_gry\\dziwięki\\332003_lloydevans09_whoosh (online-audio-converter.com).mp3')
+ogien_pocisku = pygame.mixer.Sound('dziwięki\\Gun+Silencer.mp3')
+sound_track = pygame.mixer.Sound('dziwięki\\pixel-perfect-112527.mp3')
+przejscie_sound = pygame.mixer.Sound('dziwięki\\332003_lloydevans09_whoosh (online-audio-converter.com).mp3')
 dziwienk_pocisku.set_volume(0.1)
 ogien_pocisku.set_volume(0.1)
 sound_track.set_volume(0.1)
@@ -37,20 +37,20 @@ przejscie_sound.set_volume(0.5)
 
 zdrowie_zultego = 10
 zdrowie_czerwonego = 10
-pixel_font = pygame.font.Font('projekt_gry\\inne\\PressStart2P-Regular.ttf', 25)
+pixel_font = pygame.font.Font('inne\\PressStart2P-Regular.ttf', 25)
 zuty_statek = pygame.image.load(
-    os.path.join('projekt_gry','tekstury', 'spaceship_yellow.png'))
+    os.path.join('tekstury', 'spaceship_yellow.png'))
 zuty_statek = pygame.transform.rotate(pygame.transform.scale(zuty_statek, (wysokosc_statku, szerokosc_statku)), 90)
 
 czerwony_statek = pygame.image.load(
-    os.path.join('projekt_gry','tekstury', 'spaceship_red.png'))
+    os.path.join('tekstury', 'spaceship_red.png'))
 czerwony_statek = pygame.transform.rotate(pygame.transform.scale(czerwony_statek, (wysokosc_statku, szerokosc_statku)), 270)
 
 tlo = pygame.image.load(
-    os.path.join('projekt_gry','tekstury', 'space.png'))
+    os.path.join('tekstury', 'space.png'))
 
 przycisk = pygame.image.load(
-    os.path.join('projekt_gry','tekstury', 'obraz_2025-03-11_202421195-removebg-preview.png'))
+    os.path.join('tekstury', 'obraz_2025-03-11_202421195-removebg-preview.png'))
 przycisk = pygame.transform.scale(przycisk, (300,150))
 
 tlo_menu = pygame.image.load(os.path.join('projekt_gry','tekstury','Sprite.jpg'))
