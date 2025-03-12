@@ -26,7 +26,7 @@ max_naboje = 3
 zulty_udezony = pygame.USEREVENT + 1
 czerwony_udezony = pygame.USEREVENT + 2
 
-dziwienk_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Grenade+1.mp3')
+dziwienk_pocisku = pygame.mixer.Sound('dziwięki\\Grenade+1.mp3')
 ogien_pocisku = pygame.mixer.Sound('projekt_gry\\dziwięki\\Gun+Silencer.mp3')
 sound_track = pygame.mixer.Sound('projekt_gry\\dziwięki\\pixel-perfect-112527.mp3')
 przejscie_sound = pygame.mixer.Sound('projekt_gry\\dziwięki\\332003_lloydevans09_whoosh (online-audio-converter.com).mp3')
