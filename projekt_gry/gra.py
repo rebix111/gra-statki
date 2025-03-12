@@ -56,15 +56,20 @@ przycisk = pygame.transform.scale(przycisk, (300,150))
 tlo_menu = pygame.image.load(os.path.join('tekstury','Sprite.jpg'))
 tlo_menu = pygame.transform.scale(tlo_menu, (900,500))
 def wczytaj_liczbe_rund():
-    if not os.path.exists('projekt_gry/rounds.txt'):
-        with open('projekt_gry/rounds.txt', 'w') as file:
+    if not os.path.exists('inne'):
+        os.makedirs('inne')
+    
+    rounds_file = 'inne/rounds.txt'
+    
+    if not os.path.exists(rounds_file):
+        with open(rounds_file, 'w') as file:
             file.write('0')
         return 0
     else:
         try:
-            with open('projekt_gry/rounds.txt', 'r') as file:
+            with open(rounds_file, 'r') as file:
                 rounds = file.read().strip()
-                return int(rounds) 
+                return int(rounds)
         except ValueError:  
             print("Błąd wczytywania liczby rund, ustawiono 0")
             return 0
