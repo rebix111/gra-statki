@@ -1,6 +1,5 @@
 import pygame
 import os
-from tkinter import Tk , Button
 pygame.init()
 pygame.mixer.init()
 
