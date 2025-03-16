@@ -74,7 +74,7 @@ def wczytaj_liczbe_rund():
             return 0
 
 def zapisz_liczbe_rund(liczba_rund):
-    with open('projekt_gry/rounds.txt', 'w') as file:
+    with open('inne/rounds.txt', 'w') as file:
         file.write(str(liczba_rund))
 
 def wyswietl_tekst(tekst, kolor, x, y):
